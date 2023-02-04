@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  rust-backend:
+    build: 
+      context: ./backend
+      dockerfile: ./../Dockerfile/Backend/Dockerfile
+    ports:
+      - 4000:8083
+    volumes:
+      - ./backend:/backend
+    tty: true
