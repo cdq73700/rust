@@ -9,3 +9,24 @@ services:
     volumes:
       - ./backend:/backend
     tty: true
+  rust-mysql:
+    env_file:
+      - ./database/.env
+    build: 
+      context: ./database
+      dockerfile: ./../Dockerfile/Database/Dockerfile
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - ./database:/database
+      - ./database/conf/my.cnf:/etc/mysql/conf.d/my.cnf
+      - db-store:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: "${ROOT_PASS:-test}"
+      MYSQL_DATABASE: "${DB_NAME:-test}"
+      MYSQL_USER: "${DB_USER:-test}"
+      MYSQL_PASSWORD: "${DB_PASS:-test}"
+      TZ: "${TZ:-Asia/Tokyo}"
+volumes:
+  db-store:
