@@ -2,10 +2,6 @@
 
 build:
 	docker compose build
-init:
-	make build
-	make up -d
-	make ci
 up:
 	docker compose up -d
 stop:
