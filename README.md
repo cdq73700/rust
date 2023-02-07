@@ -1,5 +1,7 @@
 # 環境構築
 
+Ubuntu 22.04.1 LTS
+
 ## 更新
 
 ```
@@ -97,3 +99,11 @@ make ci
 ```
 code .
 ```
+
+## backend
+
+http://localhost:4000/
+
+## phpMyAdmin
+
+http://localhost:8081/
