@@ -6,7 +6,8 @@ COPY . .
 
 RUN cargo install --path .
 
-RUN cargo install cargo-license
+# Database
+RUN cargo install diesel_cli
 
 RUN cargo build
 
