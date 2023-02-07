@@ -5,7 +5,7 @@ build:
 init:
 	make build
 	make up -d
-	docker compose run rust-backend bash -c "diesel setup"
+	make ci
 up:
 	docker compose up -d
 stop:
@@ -23,7 +23,7 @@ cbr:
 backend:
 	docker compose exec rust-backend bash
 mysql:
-	docker compose exec rust-mysql bash
+	docker compose exec rust-mysql bash -c "mysql -u test -p"
 phpmyadmin:
 	docker compose exec rust-phpmyadmin bash
 migration:

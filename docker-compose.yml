@@ -9,6 +9,8 @@ services:
     volumes:
       - ./backend:/backend
     tty: true
+    networks:
+      - mysql-network
   rust-mysql:
     env_file:
       - ./database/.env
@@ -20,14 +22,15 @@ services:
     volumes:
       - ./database:/database
       - ./database/conf/my.cnf:/etc/mysql/conf.d/my.cnf
-      - db-store:/var/lib/mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: "${ROOT_PASS:-test}"
+      MYSQL_ROOT_PASSWORD: "${ROOT_PASS:-root}"
       MYSQL_DATABASE: "${DB_NAME:-test}"
       MYSQL_USER: "${DB_USER:-test}"
       MYSQL_PASSWORD: "${DB_PASS:-test}"
       TZ: "${TZ:-Asia/Tokyo}"
+    networks:
+      - mysql-network
   rust-phpmyadmin:
     env_file:
       - ./database/.env
@@ -46,5 +49,8 @@ services:
       PMA_HOST: "${PMA_HOST:-rust-mysql}"
       PMA_USER: "${DB_USER:-test}"
       PMA_PASSWORD: "${DB_PASS:-test}"
-volumes:
-  db-store:
+    networks:
+      - mysql-network
+networks:
+  mysql-network:
+    driver: bridge
