@@ -28,5 +28,23 @@ services:
       MYSQL_USER: "${DB_USER:-test}"
       MYSQL_PASSWORD: "${DB_PASS:-test}"
       TZ: "${TZ:-Asia/Tokyo}"
+  rust-phpmyadmin:
+    env_file:
+      - ./database/.env
+    build: 
+      context: ./database
+      dockerfile: ./../Dockerfile/PHPMyAdmin/Dockerfile
+    ports:
+      - "${MY_ADMIN_PORT:-8081}:80"
+    links:
+      - rust-mysql
+    volumes:
+      - ./database:/database
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: "${PMA_HOST:-rust-mysql}"
+      PMA_USER: "${DB_USER:-test}"
+      PMA_PASSWORD: "${DB_PASS:-test}"
 volumes:
   db-store:
