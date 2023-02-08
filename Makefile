@@ -24,6 +24,7 @@ phpmyadmin:
 	docker compose exec rust-phpmyadmin bash
 migration:
 	docker compose run rust-backend bash -c "diesel migration run"
+	docker compose run rust-backend bash -c "cargo run --bin migrations"
 # make create_table-test
 create_table-%:
 	docker compose run rust-backend bash -c 'diesel migration generate create_"${@:create_table-%=%}"'

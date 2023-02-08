@@ -9,3 +9,12 @@ edition = "2021"
 actix-web = "4"
 dotenv  = "0.15.0"
 diesel = { version = "*", features = ["mysql"] }
+
+
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
+[[bin]]
+name = "migrations"
+path = "src/migrations.rs"
