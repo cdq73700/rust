@@ -13,4 +13,4 @@ RUN cargo build
 
 RUN cargo build --release
 
-CMD ["cargo", "run", "--release"]
+CMD ["cargo", "run", "--bin", "main", "--release"]
