@@ -31,3 +31,5 @@ migration-redo:
 # make create_table-test
 create_table-%:
 	docker compose run --rm rust-backend bash -c 'diesel migration generate create_"${@:create_table-%=%}"'
+fossa:
+	docker compose run --rm rust-backend bash -c 'fossa analyze'
