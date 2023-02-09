@@ -1,4 +1,6 @@
 # 環境構築
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcdq73700%2Frust.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcdq73700%2Frust?ref=badge_shield)
+
 
 Ubuntu 22.04.1 LTS
 
@@ -107,3 +109,6 @@ http://localhost:4000/
 ## phpMyAdmin
 
 http://localhost:8081/
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fcdq73700%2Frust.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fcdq73700%2Frust?ref=badge_large)
