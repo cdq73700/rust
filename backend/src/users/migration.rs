@@ -1,6 +1,7 @@
 use super::model::NewUsers;
 use backend::establish_connection;
 use diesel::prelude::*;
+use log::error;
 use pwhash::bcrypt;
 
 use super::create::create_users;
@@ -16,5 +17,9 @@ pub fn migration_users() {
         updated_by: "test".to_string(),
     };
 
-    create_users(connection, new_users);
+    let result = create_users(connection, new_users);
+
+    if Ok(1) != result {
+        error!("{:?}", result);
+    }
 }

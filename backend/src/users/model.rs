@@ -1,7 +1,7 @@
 use chrono::{DateTime, Utc};
 use diesel::prelude::*;
 
-#[derive(Queryable)]
+#[derive(Debug, Queryable)]
 pub struct Users {
     pub id: String,
     pub email: String,
