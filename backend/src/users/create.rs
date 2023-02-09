@@ -1,12 +1,8 @@
 use diesel::prelude::*;
 
-use super::model::{
-    Users,
-    NewUsers,
-};
+use super::model::{NewUsers, Users};
 
 pub fn create_users(conn: &mut MysqlConnection, id: &str, name: &str) -> Users {
-
     use crate::schema::users;
 
     let new_users = NewUsers { id, name };
