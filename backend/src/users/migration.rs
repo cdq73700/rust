@@ -1,14 +1,20 @@
+use super::model::NewUsers;
 use backend::establish_connection;
 use diesel::prelude::*;
-use uuid::Uuid;
+use pwhash::bcrypt;
 
 use super::create::create_users;
 
 pub fn migration_users() {
     let connection: &mut MysqlConnection = &mut establish_connection();
 
-    let id: &str = &Uuid::new_v4().to_string();
-    let name: &str = "test";
+    let new_users: NewUsers = NewUsers {
+        email: "test@test.com".to_string(),
+        name: "test".to_string(),
+        password: bcrypt::hash("test").unwrap(),
+        created_by: "test".to_string(),
+        updated_by: "test".to_string(),
+    };
 
-    let _users: super::model::Users = create_users(connection, id, name);
+    create_users(connection, new_users);
 }

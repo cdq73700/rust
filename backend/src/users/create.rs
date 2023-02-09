@@ -1,16 +1,12 @@
 use diesel::prelude::*;
 
-use super::model::{NewUsers, Users};
+use super::model::NewUsers;
 
-pub fn create_users(conn: &mut MysqlConnection, id: &str, name: &str) -> Users {
+pub fn create_users(conn: &mut MysqlConnection, new_users: NewUsers) {
     use crate::schema::users;
-
-    let new_users = NewUsers { id, name };
 
     diesel::insert_into(users::table)
         .values(&new_users)
         .execute(conn)
         .expect("Error saving new users");
-
-    users::table.order(users::id.desc()).first(conn).unwrap()
 }
